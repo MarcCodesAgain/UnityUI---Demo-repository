@@ -18,6 +18,8 @@ import {
   useModal,
   CommandPalette,
   useCommandPalette,
+  colors,
+  fontFamily,
   type CommandItem,
 } from '@marcllopis/unityui';
 
@@ -25,8 +27,26 @@ const COMMANDS: CommandItem[] = [
   { id: '1', label: 'Go to Home',        icon: '🏠', group: 'Navigation', shortcut: ['⌘', 'H'], onSelect: () => alert('→ Home') },
   { id: '2', label: 'New Component',     icon: '✦',  group: 'Actions',    shortcut: ['⌘', 'N'], onSelect: () => alert('New component') },
   { id: '3', label: 'Switch Dark Mode',  icon: '🌑', group: 'Theme',      keywords: ['dark', 'theme'], onSelect: () => alert('Dark mode') },
-  { id: '4', label: 'View on GitHub',    icon: '⬡',  group: 'Help',       keywords: ['source', 'repo'], onSelect: () => alert('GitHub') },
+  { id: '4', label: 'View on GitHub',    icon: '⬡',  group: 'Help',       keywords: ['source', 'repo'], onSelect: () => window.open('https://github.com/MarcCodesAgain/UnityUI', '_blank', 'noopener') },
 ];
+
+const LINKS = [
+  { label: 'npm package', href: 'https://www.npmjs.com/package/@marcllopis/unityui' },
+  { label: 'Storybook', href: 'https://main--6a3ecef7019c1a5d67a81d71.chromatic.com/' },
+  { label: 'Source on GitHub', href: 'https://github.com/MarcCodesAgain/UnityUI' },
+];
+
+// Styled with the library's own tokens, as plain links (a <button> inside an <a> is invalid HTML).
+const linkStyle: React.CSSProperties = {
+  border: `1px solid ${colors.black}`,
+  color: colors.black,
+  fontFamily: fontFamily.mono,
+  fontSize: 12,
+  letterSpacing: '0.08em',
+  padding: '8px 14px',
+  textDecoration: 'none',
+  textTransform: 'uppercase',
+};
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -59,6 +79,13 @@ export default function App() {
         <Typography variant="body" style={{ color: '#636363', maxWidth: 560 }}>
           A quick tour of all UnityUI components imported from npm and running in a plain Vite + React app.
         </Typography>
+        <nav aria-label="Project links" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 24 }}>
+          {LINKS.map((link) => (
+            <a key={link.href} href={link.href} target="_blank" rel="noreferrer" style={linkStyle}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
       </div>
 
       <Divider variant="strong" spacing="lg" />
@@ -81,7 +108,8 @@ export default function App() {
           <Typography variant="body">Body text — Inter, 16px, the workhorse of the system.</Typography>
           <Typography variant="caption">Caption — smaller, secondary information</Typography>
           <Typography variant="overline">Overline — JetBrains Mono, uppercase</Typography>
-          <Typography variant="h2" highlight>Highlighted heading</Typography>
+          <Typography variant="h2">Hover me: headings get a blue sweep</Typography>
+          <Typography variant="h2" noHighlight>Same heading with noHighlight</Typography>
         </div>
       </Section>
 
@@ -95,11 +123,13 @@ export default function App() {
 
       <Section title="Alerts">
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <Alert variant="info" title="Info" message="Something you should know." />
-          <Alert variant="success" title="Success" message="Everything went well." />
-          <Alert variant="warning" title="Warning" message="Proceed with caution." />
+          <Alert variant="info" title="Info">Something you should know.</Alert>
+          <Alert variant="success" title="Success">Everything went well.</Alert>
+          <Alert variant="warning" title="Warning">Proceed with caution.</Alert>
           {!dismissed && (
-            <Alert variant="error" title="Error" message="Something went wrong." dismissible onDismiss={() => setDismissed(true)} />
+            <Alert variant="error" title="Error" onDismiss={() => setDismissed(true)}>
+              Something went wrong. Dismiss me with the × button.
+            </Alert>
           )}
         </div>
       </Section>
@@ -159,9 +189,9 @@ export default function App() {
       </Section>
 
       <Section title="CountUp">
-        <CountUp end={1_000_000} prefix="$" duration={2000} />
-        <CountUp end={98.6} decimals={1} suffix="%" duration={1500} />
-        <CountUp end={42} duration={1000} />
+        <CountUp to={1_000_000} prefix="$" separator="," duration={2000} />
+        <CountUp to={98.6} decimals={1} suffix="%" duration={1500} />
+        <CountUp to={42} duration={1000} />
       </Section>
 
       <Section title="Card">

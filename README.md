@@ -41,5 +41,5 @@ Open [http://localhost:5173](http://localhost:5173).
 ## Related
 
 - **npm package** → [`@marcllopis/unityui`](https://www.npmjs.com/package/@marcllopis/unityui)
-- **Storybook** → [chromatic.com](https://6a3ecef7019c1a5d67a81d71-irgzwxjhri.chromatic.com/)
+- **Storybook** → [chromatic.com](https://main--6a3ecef7019c1a5d67a81d71.chromatic.com/)
 - **Source** → [github.com/MarcCodesAgain/UnityUI](https://github.com/MarcCodesAgain/UnityUI)
