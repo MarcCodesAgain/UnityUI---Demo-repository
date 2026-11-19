@@ -4,6 +4,8 @@ A minimal showcase app demonstrating every component from [`@marcllopis/unityui`
 
 The goal is simple: show that the package installs from npm and all components work out of the box in a standard Vite + React project.
 
+**Live:** [https://unity-ui-demo-repository.vercel.app](https://unity-ui-demo-repository.vercel.app)
+
 ## Stack
 
 - [Vite](https://vite.dev/) + React 19 + TypeScript
@@ -40,6 +42,7 @@ Open [http://localhost:5173](http://localhost:5173).
 
 ## Related
 
+- **Live demo** → [unity-ui-demo-repository.vercel.app](https://unity-ui-demo-repository.vercel.app)
 - **npm package** → [`@marcllopis/unityui`](https://www.npmjs.com/package/@marcllopis/unityui)
 - **Storybook** → [chromatic.com](https://main--6a3ecef7019c1a5d67a81d71.chromatic.com/)
 - **Source** → [github.com/MarcCodesAgain/UnityUI](https://github.com/MarcCodesAgain/UnityUI)
